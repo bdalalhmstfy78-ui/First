@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First - Sudanese Certificate Comprehensive</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --primary-blue: #3b82f6;
+            --primary-green: #10b981;
+            --accent-yellow: #fbbf24;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Ctext x='50%25' y='50%25' font-size='32' fill='rgba(245,245,220,0.05)' text-anchor='middle' alignment-baseline='middle'%3Eصفصف%3C/text%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Ctext x='50%25' y='50%25' font-size='32' fill='rgba(245,245,220,0.05)' text-anchor='middle' alignment-baseline='middle'%3Eصفصف%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        .main-wrapper { width: 100%; max-width: 700px; margin: 0 auto; padding-bottom: 50px; }
+
+        .main-header {
+            background: linear-gradient(180deg, #1e3a8a 0%, #0f172a 100%);
+            padding: 50px 20px;
+            border-radius: 0 0 50px 50px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .title-main { font-size: 2.8rem; margin: 0; font-weight: 800; }
+        .title-main span { color: var(--accent-yellow); }
+        .content-card { background-color: var(--card-bg); border-radius: 24px; padding: 25px; margin: 20px 15px; box-shadow: 0 4px 25px rgba(0,0,0,0.3); }
+
+        .button-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .btn { border: none; border-radius: 15px; padding: 20px 10px; font-size: 1rem; font-weight: bold; color: white; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-blue { background: linear-gradient(135deg, #2563eb, #1e40af); }
+        .btn-green { background: linear-gradient(135deg, #059669, #064e3b); }
+        .btn:hover { transform: translateY(-3px); filter: brightness(1.2); }
+
+        #grammar-section { display: none; margin-top: 20px; text-align: right; }
+        .tense-block { background: #0f172a; border-right: 4px solid var(--primary-blue); padding: 15px; margin-bottom: 15px; border-radius: 12px; }
+        .rule-box { background: #1e293b; padding: 10px; border-radius: 8px; font-family: monospace; color: #60a5fa; margin: 8px 0; direction: ltr; text-align: left; border: 1px solid #334155; }
+        .example-box { font-style: italic; color: #10b981; margin-top: 5px; }
+        .footer-controls { display: flex; justify-content: center; gap: 15px; margin-top: 30px; }
+        .action-btn { background: #334155; border: none; color: white; padding: 12px 25px; border-radius: 15px; font-weight: bold; cursor: pointer; display: flex; align-items: center; gap: 10px; }
+        #social-popup { display: none; justify-content: center; margin-top: 15px; }
+
+        /* الأزرار الاجتماعية المستطيلة */
+        .social-btn {
+            color: white;
+            padding: 12px 25px;
+            border-radius: 12px; /* شكل مستطيل مستدير الأطراف */
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            justify-content: center;
+            min-width: 220px; /* عرض موحد لكل الأزرار */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .whatsapp-link { background: #25D366; }  /* أخضر واتساب */
+        .tiktok-link { background: #000000; }     /* أسود تيك توك */
+        .youtube-link { background: #FF0000; }    /* أحمر يوتيوب إذا أضفت رابط يوتيوب */
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.2);
+        }
+
+        /* About Modal */
+        #aboutModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .modal-content {
+            background: rgba(255,255,255,0.98);
+            width: 95%;
+            max-width: 800px;
+            border-radius: 15px;
+            padding: 30px;
+            position: relative;
+            text-align: right;
+            direction: rtl;
+            line-height: 1.8;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            max-height: 90vh;   /* ارتفاع مناسب للتمرير */
+            overflow-y: auto;    /* السماح بالتمرير للنصوص الطويلة */
+        }
+        .modal-close-btn {
+            position:absolute;
+            top:15px; left:15px;
+            background:#ef4444;
+            color:#fff;
+            border:none;
+            border-radius:50%;
+            width:40px;
+            height:40px;
+            cursor:pointer;
+            font-size:22px;
+            line-height:1;
+            font-weight:bold;
+        }
+        .dev-btn { margin-top: 20px; background:#10b981; color:#fff; border:none; padding:12px 25px; border-radius:12px; cursor:pointer; font-weight:bold; display:inline-block; }
+    </style>
+</head>
+<body>
+<div class="main-wrapper">
+    <header class="main-header">
+        <h1 class="title-main">مرحباً بك في <span>First</span></h1>
+        <p>منصة تعليمية لطلاب الشهادة السودانية</p>
+    </header>
+
+    <div class="content-card">
+        <div class="button-grid">
+            <button class="btn btn-blue" onclick="window.open('https://www.scribd.com/document/544467138/Spine6')">Spine 6</button>
+            <button class="btn btn-green" onclick="window.open('https://drive.google.com/file/d/1xvhdk3p5FOBnAxB4h022TiP8RazCaCBr/preview')">Treasure Island ⛵</button>
+            <button class="btn btn-green" onclick="window.open('https://youtube.com/channel/UCHDU7FWtLtSycQQcpAuZ8Qg?si=F5ONwG8BXCnyq1mL')">YouTube 📺</button>
+            <button class="btn btn-blue" onclick="toggleGrammar()">Grammar 📚</button>
+        </div>
+
+        <div id="grammar-section">
+            <div class="tense-block">
+                <div class="tense-title">1. Present Simple (المضارع البسيط)</div>
+                <p>يستخدم للحقائق والعادات المتكررة.</p>
+                <div class="rule-box">(I, We, You, They) + Verb (inf)</div>
+                <div class="rule-box">(He, She, It) + Verb + (s / es)</div>
+                <div class="example-box">Example: Mona usually washes the dishes.</div>
+            </div>
+            <div class="tense-block">
+                <div class="tense-title">2. Present Continuous (المضارع المستمر)</div>
+                <p>يصف فعلاً يحدث الآن.</p>
+                <div class="rule-box">Am / Is / Are + Verb + ing</div>
+                <div class="example-box">Example: Look! The bus is coming.</div>
+            </div>
+            <div class="tense-block">
+                <div class="tense-title">3. Present Perfect (المضارع التام)</div>
+                <p>كلمات دالة: just, for, yet, never, since.</p>
+                <div class="rule-box">Have / Has + Past Participle (P.P)</div>
+                <div class="example-box">Example: Ali has not finished his work yet.</div>
+            </div>
+            <div class="tense-block">
+                <div class="tense-title">4. Past Simple (الماضي البسيط)</div>
+                <p>كلمات دالة: yesterday, ago, last.</p>
+                <div class="rule-box">Subject + Verb (Past Form)</div>
+                <div class="example-box">Example: He visited my uncle three days ago.</div>
+            </div>
+            <div class="tense-block">
+                <div class="tense-title">5. IF Clauses (قواعد لو الشرطية)</div>
+                <div class="rule-box">IF 1: Present Simple -> Will + inf</div>
+                <div class="rule-box">IF 2: Past Simple -> Would + inf</div>
+                <div class="rule-box">IF 3: Past Perfect -> Would have + P.P</div>
+            </div>
+        </div>
+
+        <div class="footer-controls">
+    <button class="action-btn" onclick="toggleSocial()"><i class="fas fa-comments"></i> تواصل معنا</button>
+    <button class="action-btn" onclick="openAbout()"><i class="fas fa-info-circle"></i> About</button>
+</div>
+
+<!-- صندوق الروابط الاجتماعية -->
+<div id="social-popup" style="display:none; flex-direction: column; gap: 10px; margin-top: 15px; justify-content: center;">
+    <a href="https://wa.me/249997979494" target="_blank" class="social-btn whatsapp-link">
+        <i class="fab fa-whatsapp"></i> واتساب: +249997979494
+    </a>
+    <a href="https://www.tiktok.com/@first2222221?_r=1&_t=ZS-942YxwBdMqW" target="_blank" class="social-btn tiktok-link">
+        <i class="fab fa-tiktok"></i> تيك توك
+    </a>
+</div>
+
+<script>
+function toggleSocial() {
+    const popup = document.getElementById('social-popup');
+    popup.style.display = (popup.style.display === 'flex') ? 'none' : 'flex';
+}
+
+function openAbout() { 
+    const modal = document.getElementById('aboutModal');
+    modal.style.display = 'flex'; 
+    document.body.style.overflow = 'hidden';
+}
+
+function closeAbout() {
+    const modal = document.getElementById('aboutModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+function toggleGrammar() {
+    const g = document.getElementById('grammar-section');
+    g.style.display = (g.style.display === 'block') ? 'none' : 'block';
+    if(g.style.display === 'block') g.scrollIntoView({ behavior: 'smooth' });
+}
+
+function showDevInfo() {
+    alert(
+        '🔧 معلومات المطور:\n\n' +
+        'برمجيات صُنعت لتنمو مع أعمالك 🚀\n\n' +
+        'لست اقدم مجرد خدمة، بل شريكك التقني لتحويل أفكارك إلى منصات رقمية سريعة، آمنة، وقابلة للتوسع.\n\n' +
+        'هل أنت مستعد لإطلاق مشروعك القادم؟\n\n' +
+        'للتواصل واتساب: 01553318771\n\n' +
+        'تم تطويره من قبل مصطفى عبدالإله'
+    );
+}
+</script>
+
+<!-- About Modal -->
+<div id="aboutModal">
+  <div class="modal-content">
+    <button class="modal-close-btn" onclick="closeAbout()">&times;</button>
+    <h2 style="color:#f1c40f; text-align:center; border-bottom:2px solid #f1c40f; padding-bottom:10px; margin-top:0;">
+      🚀 طريقك نحو التميّز يبدأ من هنا.. مرحباً بك في "مركز First التعليمي"
+    </h2>
+    <div style="padding:10px 0;">
+      <p style="color:#333; font-size:15px; margin-bottom:15px;">
+        هل تطمح في التفوق وتجاوز عقبات الشهادة السودانية بثقة؟ نحن هنا لنجعل الحلم حقيقة!
+      </p>
+      <h3 style="color:#2c3e50;">🌟 لماذا تختار مركز First؟</h3>
+      <p style="color:#333;">
+        نحن لا نقدم دروساً فحسب، بل نبني مستقبلاً. نتميز بـ:
+      </p>
+      <p style="color:#333;">
+        <b>• تغطية شاملة للمقرر:</b><br>
+        سواء كنت في المساق العلمي أو الأدبي، نضمن لك شرحاً وافياً لكافة التخصصات.
+      </p>
+      <p style="color:#333;">
+        <b>• نخبة من عمالقة التعليم:</b><br>
+        يضم مركزنا تشكيلة مختارة من أشهر وأكفأ المعلمين في السودان، خبراء في تبسيط المعلومة وصناعة الأوائل:
+      </p>
+      <p style="color:#333; line-height:2;">
+        • اللغة العربية: أمجد فتحي.<br>
+        • اللغة الإنجليزية: أ. ود النور.<br>
+        • الرياضيات: أ. سهل و أبو حواء.<br>
+        • الكيمياء: أ. عمار الجاك و أ. ود مدني.<br>
+        • الفيزياء: أ. فيزكسينو.<br>
+        • الأحياء: أ. سلطان.<br>
+        • الهندسية: أ. كسلاوي.<br>
+        • الجغرافيا: أ. ود النور.<br>
+        • الحاسوب: أ. مصعب خليفة.<br>
+        • الدراسات الإسلامية: أ. منتصر الجزولي.<br>
+        • التاريخ: أ. الشيخ و أ. فتح الرحمن.<br>
+        • التربية الإسلامية: أ. عبود.
+      </p>
+      <div style="background:#f1f8ff; padding:15px; border-radius:10px; margin-top:15px; font-size:14px; border-right:5px solid #3b82f6; color:#2c3e50;">
+        🛡️ <b>بيئة تعليمية منضبطة ومحفزة:</b><br>
+        نؤمن أن الانضباط هو أساس النجاح؛ لذا يوفر المركز نظاماً إشرافياً دقيقاً يتواجد في كل أركان المركز لضمان توفير الجو المثالي للدراسة والتركيز التام.
+      </div>
+      <p style="margin-top:20px; font-weight:bold; text-align:center; color:#2c3e50;">
+        💡 انضم الآن إلى مركز First.. حيث نضعك على طريق القمة!
+      </p>
+      <button class="dev-btn" onclick="showDevInfo()">🔧 معلومات المطور</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>
